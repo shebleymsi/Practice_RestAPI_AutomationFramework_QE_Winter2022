@@ -30,8 +30,8 @@ public class TweetTest extends RestBase {
         ValidatableResponse response = tweet.getUserTimeLineTweet();
         System.out.println(response.statusCode(200));
         // System.out.println(response.extract().body().asPrettyString());
-        String expectedValue = "helloBaborVai,Welcome to our class6";
-        String expectedName = "Mh Shahib";
+        String expectedValue = "Hello Babor Vai, Welcome to our class6";
+        String expectedName = "shebley_md";
         long expectedId = 1557544715725275137l;
         String actualText = response.extract().body().path("[0].text");
         long actualId = response.extract().body().path("[0].id");
@@ -52,8 +52,8 @@ public class TweetTest extends RestBase {
         response.statusCode(200);
         // System.out.println(response.statusCode(200));
         System.out.println(response.extract().body().asPrettyString());
-        String expectedValue = "helloBaborVai,Welcome to our class6";
-        String expectedName = "Mh Shahib";
+        String expectedValue = "Hello Babor Vai, Welcome to our class6";
+        String expectedName = "shebley_md";
         long expectedId = 1557544715725275137l;
         String actualText = response.extract().body().path("[0].text");
         long actualId = response.extract().body().path("[0].id");
@@ -81,7 +81,7 @@ public class TweetTest extends RestBase {
         String actualScreenName=response.extract().body().path("user.screen_name");
         System.out.println(actualTweet);
         Assert.assertEquals(actualTweet,tweetMessage,"Tweet does not match");
-        Assert.assertEquals(actualScreenName,"ShahibMh","Screen name does not match");
+        Assert.assertEquals(actualScreenName,"shebley_md","Screen name does not match");
 
 
 
