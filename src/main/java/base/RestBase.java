@@ -13,6 +13,7 @@ public class RestBase {
     protected String apiSecretKey;
     protected String accessToken;
     protected String accessTokenSecret;
+    protected String bearerToken;
     protected Properties properties;
     protected static InputStream inputStream;
     protected String baseUrl;
@@ -35,6 +36,7 @@ public class RestBase {
         this.apiSecretKey = this.properties.getProperty("apiSecretKey");
         this.accessToken = this.properties.getProperty("accessToken");
         this.accessTokenSecret = this.properties.getProperty("accessTokenSecret");
+        this.bearerToken = this.properties.getProperty("bearerToken");
     }
 
 
