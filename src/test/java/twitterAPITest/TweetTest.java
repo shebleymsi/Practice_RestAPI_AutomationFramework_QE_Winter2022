@@ -32,7 +32,7 @@ public class TweetTest extends RestBase {
         // System.out.println(response.extract().body().asPrettyString());
         String expectedValue = "Hello Babor Vai, Welcome to our class6";
         String expectedName = "shebley_md";
-        long expectedId = 1557544715725275137l;
+        long expectedId = 1557786208402640898l;
         String actualText = response.extract().body().path("[0].text");
         long actualId = response.extract().body().path("[0].id");
         // long actualId= response.extract().body().path("x[0].entities.hashtags");
@@ -54,7 +54,7 @@ public class TweetTest extends RestBase {
         System.out.println(response.extract().body().asPrettyString());
         String expectedValue = "Hello Babor Vai, Welcome to our class6";
         String expectedName = "shebley_md";
-        long expectedId = 1557544715725275137l;
+        long expectedId = 1557786208402640898l;
         String actualText = response.extract().body().path("[0].text");
         long actualId = response.extract().body().path("[0].id");
         // long actualId= response.extract().body().path("x[0].entities.hashtags");
@@ -70,19 +70,18 @@ public class TweetTest extends RestBase {
 
     @Test
     public void verifyCreateTweet() {
-        String tweetMessage = "Welcome back Ismat"+ LearnRandomNumber.randomNumberGenerate();
+        String tweetMessage = "Welcome back Ismat" + LearnRandomNumber.randomNumberGenerate();
         ValidatableResponse response = this.tweet.createTweet(tweetMessage);
         response.statusCode(200);
         response.contentType("application/json");
-      //  response.log().all();
-      System.out.println(response.extract().body().asPrettyString());
+        //  response.log().all();
+        System.out.println(response.extract().body().asPrettyString());
         // Verify tweet value
-        String actualTweet=response.extract().body().path("text");
-        String actualScreenName=response.extract().body().path("user.screen_name");
+        String actualTweet = response.extract().body().path("text");
+        String actualScreenName = response.extract().body().path("user.screen_name");
         System.out.println(actualTweet);
-        Assert.assertEquals(actualTweet,tweetMessage,"Tweet does not match");
-        Assert.assertEquals(actualScreenName,"shebley_md","Screen name does not match");
-
+        Assert.assertEquals(actualTweet, tweetMessage, "Tweet does not match");
+        Assert.assertEquals(actualScreenName, "shebley_md", "Screen name does not match");
 
 
     }
@@ -97,15 +96,15 @@ public class TweetTest extends RestBase {
         //  response.log().all();
         System.out.println(response.extract().body().asPrettyString());
         // Verify tweet value
-       String actualMessage=response.extract().body().path("errors[0].message");
-      Assert.assertEquals(actualMessage,"Status is a duplicate.","message does not match");
+        String actualMessage = response.extract().body().path("errors[0].message");
+        Assert.assertEquals(actualMessage, "Status is a duplicate.", "message does not match");
     }
 
 
     @Test
     public void verifyDeleteTweet() {
-        ValidatableResponse response = this.tweet.deleteTweet(1559727301549490176L);
-      //  response.statusCode(200);
+        ValidatableResponse response = this.tweet.deleteTweet(1557786208402640898L);
+        //  response.statusCode(200);
         //  response.log().all();
         System.out.println(response.extract().body().asPrettyString());
 
@@ -114,9 +113,8 @@ public class TweetTest extends RestBase {
     @Test
     public void verifyResponseTime() {
         long actualResponse = this.tweet.responseTimeCheck(GET_USER_TWEET_ENDPOINT);
-     //   Assert.assertEquals(actualResponse,actualResponse<700,"Response time does not match");
-        Assert.assertTrue(actualResponse<700,"Response time exit the default time does not match");
-
+        //   Assert.assertEquals(actualResponse,actualResponse<700,"Response time does not match");
+        Assert.assertTrue(actualResponse < 700, "Response time exit the default time does not match");
 
 
     }
@@ -127,34 +125,34 @@ public class TweetTest extends RestBase {
 
     }
 
- @Test
+    @Test
     public void verifyHeaderValue() {
-     Headers response= this.tweet.headerValue(GET_USER_TWEET_ENDPOINT);
-     String actualHeaderValue=response.getValue("content-type");
-     System.out.println(response.getValue("content-type"));
-     Assert.assertEquals(actualHeaderValue,"application/json;charset=utf-8","Header value does not match");
- }
+        Headers response = this.tweet.headerValue(GET_USER_TWEET_ENDPOINT);
+        String actualHeaderValue = response.getValue("content-type");
+        System.out.println(response.getValue("content-type"));
+        Assert.assertEquals(actualHeaderValue, "application/json;charset=utf-8", "Header value does not match");
+    }
 
 
     @Test
-    public void testPropertyFromResponse(){
+    public void testPropertyFromResponse() {
         // User sent a tweet
         String tweet = "We are learning Rest API Automation and Hashem is the team Lead" + UUID.randomUUID().toString();
         ValidatableResponse response = this.tweet.createTweet(tweet);
-     //   System.out.println(response.extract().body().asPrettyString());
-      System.out.println(response.extract().body().asPrettyString().contains("id"));
+        //   System.out.println(response.extract().body().asPrettyString());
+        System.out.println(response.extract().body().asPrettyString().contains("id"));
         // Verify that the tweet is successful
         response.statusCode(200);
 
         // this.tweetAPIClient.checkProperty(tweetAPIClient.CREATE_TWEET_ENDPOINT,"text");
 
-      Response response1 = given().auth().oauth(this.apiKey,this.apiSecretKey,this.accessToken,this.accessTokenSecret).when().get(this.baseUrl+GET_USER_TWEET_ENDPOINT);
+        Response response1 = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT);
         // Response response2=  response;
-     JsonPath pathEvaluator= response1.jsonPath();
-     String property= pathEvaluator.get("[0].text");
-    System.out.println("Property value : "+property);
-      //   System.out.println(response1.extract().body().asPrettyString());
-         System.out.println(response1.body().asPrettyString());
+        JsonPath pathEvaluator = response1.jsonPath();
+        String property = pathEvaluator.get("[0].text");
+        System.out.println("Property value : " + property);
+        //   System.out.println(response1.extract().body().asPrettyString());
+        System.out.println(response1.body().asPrettyString());
 
     }
 

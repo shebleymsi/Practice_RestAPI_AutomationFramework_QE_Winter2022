@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 7.823 s <<< FAILURE! - in TestSuite
+twitterAPITest.TweetTest.testGetUserTimeLineTweet  Time elapsed: 1.248 s  <<< FAILURE!
+java.lang.AssertionError: Text value does not match expected [Hello Babor Vai, Welcome to our class6] but found [We are learning Rest API Automation and Hashem is the team Lead52ebbd53-913d-4f82-a8d2-3b8f395fc166]
+	at twitterAPITest.TweetTest.testGetUserTimeLineTweet(TweetTest.java:40)
+
+twitterAPITest.TweetTest.testGetUserTimeLineTweetNew  Time elapsed: 0.894 s  <<< FAILURE!
+java.lang.AssertionError: Text value does not match expected [Hello Babor Vai, Welcome to our class6] but found [We are learning Rest API Automation and Hashem is the team Lead52ebbd53-913d-4f82-a8d2-3b8f395fc166]
+	at twitterAPITest.TweetTest.testGetUserTimeLineTweetNew(TweetTest.java:62)
+
+twitterAPITest.TweetTest.verifyCreateTweet  Time elapsed: 0 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <200> but was <403>.
+
+	at twitterAPITest.TweetTest.verifyCreateTweet(TweetTest.java:75)
+

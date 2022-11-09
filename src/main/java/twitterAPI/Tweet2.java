@@ -3,7 +3,6 @@ package twitterAPI;
 import base.RestBase;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-
 import static io.restassured.RestAssured.given;
 
 public class Tweet2 extends RestBase {
@@ -12,15 +11,18 @@ public class Tweet2 extends RestBase {
     // https://api.twitter.com/2/users/:id/tweets
 
 
+    public RequestSpecification access = given().contentType("application/jason")
+            .auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when();
 
-    public RequestSpecification access = given().contentType("application/jason").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when();
 
-    public static final String SINGLE_USER_TWEET_ENDPOINT = "/users/:id/tweets";
+ //   given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
+    //public static final String SINGLE_USER_TWEET_ENDPOINT = "/users/:id/tweets";
 
-    public ValidatableResponse getSingleUserTweet(Long id) {
-        return given().contentType("application/jason").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).auth().oauth2(this.bearerToken).when()
-                .get(this.baseUrl + "/users/:" + id + "/tweet" + this.SINGLE_USER_TWEET_ENDPOINT  ).then();
-    }
+//    public ValidatableResponse getSingleUserTweet(Long id) {
+//        return given().contentType("application/jason")
+//        .auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
+//        .auth().oauth2(this.bearerToken).when().get(this.baseUrl + "/users/:" + id + "/tweet" + this.SINGLE_USER_TWEET_ENDPOINT).then();
+//    }
 
     public String get_USER_TWEET_ENDPOINT_METHOD(Long id) {
         String endPoint = "/users/" + id + "/tweets";
@@ -35,13 +37,32 @@ public class Tweet2 extends RestBase {
 
     }
 
-    public String get_USER_TWEET_ENDPOINT_FOLLOWING(Long useId) {
+    //
+//    public static String get_USER_TWEET_ENDPOINT_FOLLOWING(Long useId) {
+//        String endPointFollowing = "/users/" + useId + "/following";
+//        return endPointFollowing;
+//    }
+
+//    public ValidatableResponse getTweetTimelineWithFollowing(Long useId) {
+//        return access.get(this.baseUrl + this.get_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();
+//    }
+
+
+    public static String GET_USER_TWEET_ENDPOINT_FOLLOWING(Long useId) {
         String endPointFollowing = "/users/" + useId + "/following";
         return endPointFollowing;
     }
 
-    public ValidatableResponse getTweetTimelineWithFollowing(Long useId) {
-        return access.get(this.baseUrl + this.get_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();
+    public ValidatableResponse getTweetTimeLineWithFollowing(Long useId) {
+        // return given().auth().oauth(this.apiKey,this.apiSecretKey,this.accessToken,this.accessTokenSecret)
+        //.config(RestAssured.config().encoderConfig(encoderConfig().encodeContentTypeAs("application/json."))
+
+        return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
+                // .auth().oauth2(this.bearerToken)
+                .when().get(this.baseUrl + this.GET_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();    //.log().all();
+
     }
+
+
 
 }

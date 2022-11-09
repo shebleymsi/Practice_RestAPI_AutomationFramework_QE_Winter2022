@@ -1,0 +1,9 @@
+Utils\PropertyReader.class
+typicode\PostPoJo.class
+twitterAPI\Tweet2.class
+typicode\PostsAPIClient.class
+base\RestBase.class
+twitterAPI\Tweet.class
+Utils\LearnRandomNumber.class
+base\RestAssuredDoc.class
+typicode\TypiCodeAPIClient.class

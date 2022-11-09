@@ -6,25 +6,25 @@ import java.util.Properties;
 
 import static Utils.PropertyReader.readProperty;
 
-
 public class RestBase {
-
     protected String apiKey;
     protected String apiSecretKey;
     protected String accessToken;
     protected String accessTokenSecret;
     protected String bearerToken;
     protected Properties properties;
+
     protected static InputStream inputStream;
     protected String baseUrl;
+    protected String baseUrl1;
     protected String apiVersion = "1.1";
+
     protected String apiVersion2 = "2";
-
-
 
     public RestBase() {
         // https://api.twitter.com/1.1
-        this.baseUrl = "https://api.twitter.com/" + this.apiVersion;
+        this.baseUrl1 = "https://api.twitter.com/" + this.apiVersion;
+        this.baseUrl = "https://api.twitter.com/" + this.apiVersion2;
         this.properties = new Properties();
 
         try {
