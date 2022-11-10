@@ -1,0 +1,13 @@
+{
+  "event": {
+    "type": "message_create",
+    "message_create": {
+      "target": {
+        "recipient_id":""
+      },
+      "message_data": {
+        "text": "Hi, it's me!"
+      }
+    }
+  }
+}
