@@ -11,24 +11,31 @@ import static io.restassured.RestAssured.given;
 
 public class Tweet extends RestBase {
 
-    // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
 
-    // POST statuses/update
+
+    // POST statuses/update  // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
     public static final String CREATE_TWEET_ENDPOINT = "/statuses/update.json";
 
 
-    // DELETE : POST  https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-destroy-id
+
+    // DELETE : POST   // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-destroy-id
     public final String DELETE_TWEET_ENDPOINT = "/statuses/destroy/";
 
-    //    https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline
-    // GET statuses/user_timeline
-    public static final String GET_USER_TWEET_ENDPOINT = "/statuses/home_timeline.json";
-
-// https://api.twitter.com/1.1/statuses/home_timeline.json
 
 
-    //  Action method
+    // GET statuses/user_timeline  // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-user_timeline
+    public static final String GET_USER_TWEET_ENDPOINT = "/statuses/user_timeline.json";
+
+
+
+    //  Action method  // https://api.twitter.com/1.1/statuses/user_timeline.json
     public RequestSpecification access = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret);
+
+
+
+    // GET statuses/home_timeline  // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/timelines/api-reference/get-statuses-home_timeline
+    public static final String GET_HOME_TWEET_ENDPOINT = "/statuses/home_timeline.json";
+
 
     // Get All Tweet information
     public ValidatableResponse getUserTimeLineTweet() {
@@ -37,6 +44,11 @@ public class Tweet extends RestBase {
 
     public ValidatableResponse getUserTimeLineTweetNew() {
         return access.when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT).then();
+    }
+
+
+    public ValidatableResponse getHomeTimeLineTweet() {
+        return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when().get(this.baseUrl + GET_HOME_TWEET_ENDPOINT).then();
     }
 
 

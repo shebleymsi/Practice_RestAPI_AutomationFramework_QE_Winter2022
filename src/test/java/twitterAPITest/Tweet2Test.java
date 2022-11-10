@@ -1,5 +1,6 @@
 package twitterAPITest;
 
+
 import base.RestBase;
 import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
@@ -17,9 +18,9 @@ public class Tweet2Test extends RestBase {
 
    @Test
     public void testGetUserTimeLineTweet() {
-        ValidatableResponse response =tweet2.getTweetTimeLine(1557786208402640898L);
+        ValidatableResponse response =tweet2.getTweetTimeLine(1590650473698181121L);
         response.log().all();
-        System.out.println(response.statusCode(200));
+        System.out.println(response.statusCode(404)); //200
         System.out.println(response.extract().body().asPrettyString());
     }
 
