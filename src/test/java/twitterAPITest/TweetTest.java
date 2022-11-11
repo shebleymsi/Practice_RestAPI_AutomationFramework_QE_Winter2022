@@ -32,7 +32,7 @@ public class TweetTest extends RestBase {
     @Test
     public void testGetUserTimeLineTweet() {
         Tweet tweet = new Tweet();
-        ValidatableResponse response = tweet.getUserTimeLineTweetNew();
+        ValidatableResponse response = tweet.getUserTimeLineTweet();
         response.statusCode(200);
         System.out.println(response.statusCode(200));
         System.out.println(response.extract().body().asPrettyString());  // SHEBLEY : code ok, BUT comment its FOR SMALL CONSOLE
