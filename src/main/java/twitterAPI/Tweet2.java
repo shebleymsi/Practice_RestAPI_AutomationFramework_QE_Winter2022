@@ -17,6 +17,8 @@ public class Tweet2 extends RestBase {
     // https://api.twitter.com/2/users/:id/tweets
     // https://api.twitter.com/2/users/1182463426272092160/tweets
     // https://tweeterid.com/     for converting twitter id
+
+
     public static final String SINGLE_USER_TWEET_ENDPOINT = "/users/:id/tweets";
 
 
@@ -37,6 +39,8 @@ public class Tweet2 extends RestBase {
         return endPoint;
     }
 
+
+    // 01
     public ValidatableResponse getTweetTimeLine(Long id) {
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .when().get(this.baseUrl2 + this.get_USER_TWEET_ENDPOINT_METHOD(id)).then();     //.log().all();
@@ -48,6 +52,9 @@ public class Tweet2 extends RestBase {
         return endPointFollowing;
     }
 
+
+
+    // 02
     public ValidatableResponse getTweetTimeLineWithFollowing(Long useId) {
         // return given().auth().oauth(this.apiKey,this.apiSecretKey,this.accessToken,this.accessTokenSecret)
         //.config(RestAssured.config().encoderConfig(encoderConfig().encodeContentTypeAs("application/json."))
