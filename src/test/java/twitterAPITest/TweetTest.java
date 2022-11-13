@@ -232,11 +232,9 @@ public class TweetTest extends RestBase {
         //  System.out.println(response.extract().body().asPrettyString());
         System.out.println(response.extract().body().asPrettyString().contains("id"));
 
-
         // Verify that the tweet is successful
         response.statusCode(200);
         System.out.println(response.statusCode(200)); // SHEBLEY : By me
-
 
         Response response1 = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT);
         JsonPath pathEvaluator = response1.jsonPath();
@@ -245,6 +243,11 @@ public class TweetTest extends RestBase {
         System.out.println("Property value : " + property);
         //  System.out.println(response1.extract().body().asPrettyString()); // SHEBLEY : wrong code but just check its like b4
         System.out.println(response1.body().asPrettyString());
+
+
+        /* 1. This the way you can extract any JSON value.
+           2. how can you capture or check any value is present or not?
+         */
 
     }
 
