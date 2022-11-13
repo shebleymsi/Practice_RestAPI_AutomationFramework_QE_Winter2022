@@ -12,12 +12,11 @@ import static io.restassured.RestAssured.given;
 
 public class Tweet2 extends RestBase {
 
+
     // https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets#tab0
     // https://api.twitter.com/2/users/:id/tweets
     // https://api.twitter.com/2/users/1182463426272092160/tweets
-    // https://tweeterid.com/    ... ... ... for converting twitter id
-
-
+    // https://tweeterid.com/     for converting twitter id
     public static final String SINGLE_USER_TWEET_ENDPOINT = "/users/:id/tweets";
 
 
@@ -27,20 +26,20 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getSingleUserTweet(long id) {
         return given().contentType("application/json")
                 .auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + "/users/:" + id + "/tweets").then();
+                .when().get(this.baseUrl2 + "/users/:" + id + "/tweets").then();
     }
 
     public String get_USER_TWEET_ENDPOINT_METHOD(Long id) {
         String endPoint = "/users/" + id + "/tweets";
         System.out.println("End Point: ===> " + endPoint);
-        String fullUrl = this.baseUrl + endPoint;
+        String fullUrl = this.baseUrl2 + endPoint;
         System.out.println("Base URL: ===> " + fullUrl);
         return endPoint;
     }
 
     public ValidatableResponse getTweetTimeLine(Long id) {
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + this.get_USER_TWEET_ENDPOINT_METHOD(id)).then();     //.log().all();
+                .when().get(this.baseUrl2 + this.get_USER_TWEET_ENDPOINT_METHOD(id)).then();     //.log().all();
 
     }
 
@@ -55,7 +54,7 @@ public class Tweet2 extends RestBase {
 
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 // .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();    //.log().all();
+                .when().get(this.baseUrl2 + this.GET_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();    //.log().all();
     }
 
 
@@ -73,10 +72,8 @@ public class Tweet2 extends RestBase {
     private final String DELETE_TWEET_ENDPOINT = "/statuses/destroy.json";
 
 
-    // Create: POST     /
-    // / https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
-    // v2
-    public final String CREATE_TWEET_ENDPOINT = "/tweets";
+    // Create: POST     // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
+    public final String CREATE_TWEET_ENDPOINT = "/tweets";  // v2
     Long useId;
     public final String GET_USER_TWEET_ENDPOINT_FOLLOWING = "/users/" + useId + "/following";
 
@@ -88,7 +85,7 @@ public class Tweet2 extends RestBase {
     public final String POST_USERS_ID_FOLLOWING = "/users/1488323722574544899/followed_lists";
 
     public ValidatableResponse postUsersIdFollowed(Object listId) {
-        return access.contentType("application/json").body(listId).when().post(this.baseUrl + POST_USERS_ID_FOLLOWING).then();
+        return access.contentType("application/json").body(listId).when().post(this.baseUrl2 + POST_USERS_ID_FOLLOWING).then();
     }
 
 
@@ -107,7 +104,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 // .param("list_id","1468318534224781319")
                 //  .param("id","1431101898908585990")
-                .when().delete(this.baseUrl + DELETE_USERS_ID_FOLLOWING).then();
+                .when().delete(this.baseUrl2 + DELETE_USERS_ID_FOLLOWING).then();
     }
 
 
@@ -116,7 +113,7 @@ public class Tweet2 extends RestBase {
 
     public ValidatableResponse deleteUserIdRetweet() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().delete(this.baseUrl + DELETE_USERS_ID_RETWEETS_SOURCE).then();
+                .when().delete(this.baseUrl2 + DELETE_USERS_ID_RETWEETS_SOURCE).then();
     }
 
 
@@ -125,7 +122,7 @@ public class Tweet2 extends RestBase {
 
     public ValidatableResponse deleteUsersLikeTweet() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().delete(this.baseUrl + DELETE_USERS_LIKE_TWEET).then();
+                .when().delete(this.baseUrl2 + DELETE_USERS_LIKE_TWEET).then();
     }
 
 
@@ -134,7 +131,7 @@ public class Tweet2 extends RestBase {
 
     public ValidatableResponse usersIdBlocking() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + USERS_ID_BLOCKING).then();
+                .when().get(this.baseUrl2 + USERS_ID_BLOCKING).then();
     }
 
 
@@ -144,7 +141,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUsersIdFollowingList() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .contentType("application/json")
-                .when().get(this.baseUrl + GET_USERS_ID_FOLLOWING_LIST).then();
+                .when().get(this.baseUrl2 + GET_USERS_ID_FOLLOWING_LIST).then();
     }
 
 
@@ -202,7 +199,7 @@ public class Tweet2 extends RestBase {
 
                 // .auth().oauth2(this.bearerToken)
                 .body(TweetID)
-                .when().post(this.baseUrl + get_USER_TWEET_LIKE).then();
+                .when().post(this.baseUrl2 + get_USER_TWEET_LIKE).then();
     }
 
     //==================================================================================================================
@@ -222,7 +219,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 //.param("id",id)
-                .when().get(this.baseUrl + this.getuserLike(id)).then();
+                .when().get(this.baseUrl2 + this.getuserLike(id)).then();
     }
 
 
@@ -250,7 +247,7 @@ public class Tweet2 extends RestBase {
                 //   .auth().oauth2(this.bearerToken)
 
                 .body(tweet_id)
-                .when().post(this.baseUrl + POST_USERS_RETWEETS).then();
+                .when().post(this.baseUrl2 + POST_USERS_RETWEETS).then();
     }
 
 
@@ -268,7 +265,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getReTweetBy(String idNum) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 //  .param("id",id)
-                .when().get(this.baseUrl + GET_TWEETS_ID_RETWEETED_BY(idNum)).then();
+                .when().get(this.baseUrl2 + GET_TWEETS_ID_RETWEETED_BY(idNum)).then();
     }
 
 
@@ -278,7 +275,7 @@ public class Tweet2 extends RestBase {
 
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 // .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();    //.log().all();
+                .when().get(this.baseUrl2 + this.GET_USER_TWEET_ENDPOINT_FOLLOWING(useId)).then();    //.log().all();
 
     }
 
@@ -291,7 +288,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("ids", tweetId)
-                .when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT_ID).then();
+                .when().get(this.baseUrl2 + GET_USER_TWEET_ENDPOINT_ID).then();
     }
 
     //==================================================================================================================
@@ -304,7 +301,7 @@ public class Tweet2 extends RestBase {
                 // .auth().oauth2(this.bearerToken)
                 .param("ids", tweetId)
                 // .param("usernames",usernames)
-                .when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT_TWEET).then();
+                .when().get(this.baseUrl2 + GET_USER_TWEET_ENDPOINT_TWEET).then();
     }
 
     //==================================================================================================================
@@ -315,7 +312,7 @@ public class Tweet2 extends RestBase {
 
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .body(tweet)
-                .when().post(this.baseUrl + CREATE_TWEET_ENDPOINT).then();
+                .when().post(this.baseUrl2+ CREATE_TWEET_ENDPOINT).then();
     }
 
 
@@ -323,7 +320,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse createTweet(Object tweet) {
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .body(tweet)
-                .when().post(this.baseUrl + CREATE_TWEET_ENDPOINT).then();
+                .when().post(this.baseUrl2 + CREATE_TWEET_ENDPOINT).then();
     }
 
 
@@ -334,7 +331,7 @@ public class Tweet2 extends RestBase {
                 //.param("id",tweetId)
                 //.queryParam("id:",tweetId)
                 // .body(tweetId)
-                .when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT).then();
+                .when().get(this.baseUrl2 + GET_USER_TWEET_ENDPOINT).then();
 
 
     }
@@ -367,7 +364,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse deleteTweet(String deleteTweetId) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 // .param("id",deleteTweetId)
-                .when().delete(this.baseUrl + Delete_USER_TWEET_ENDPOINT_DELETE(deleteTweetId)).then();
+                .when().delete(this.baseUrl2 + Delete_USER_TWEET_ENDPOINT_DELETE(deleteTweetId)).then();
     }
 
 
@@ -376,7 +373,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse deleteTweet2() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 //  .param("id",tweetId)
-                .when().delete(this.baseUrl + DELETE_TWEET_ENDPOINT_DELETE_2).then();
+                .when().delete(this.baseUrl2 + DELETE_TWEET_ENDPOINT_DELETE_2).then();
     }
 
 
@@ -390,7 +387,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("query", searchTopic)
-                .when().get(this.baseUrl + SEARCH_TWEET_ENDPOINT).then();
+                .when().get(this.baseUrl2 + SEARCH_TWEET_ENDPOINT).then();
     }
 
 
@@ -410,7 +407,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("query", searchAll)
-                .when().get(this.baseUrl + TWEET_SEARCH_ALL_ENDPOINT).then();
+                .when().get(this.baseUrl2+ TWEET_SEARCH_ALL_ENDPOINT).then();
     }
 
     //curl https://api.twitter.com/2/tweets/search/recent?query=from%3Atwitterdev%20new%20-is%3Aretweet&max_results=10 -H "Authorization: Bearer $ACCESS_TOKEN"
@@ -431,7 +428,7 @@ public class Tweet2 extends RestBase {
                 .auth().oauth2(this.bearerToken)
                 .queryParam("query", tweetCount)
 
-                .when().get(this.baseUrl + TWEETS_COUNTS_RECENT).then();
+                .when().get(this.baseUrl2 + TWEETS_COUNTS_RECENT).then();
     }
 
     //==================================================================================================================
@@ -447,7 +444,7 @@ public class Tweet2 extends RestBase {
                 .auth().oauth2(this.bearerToken)
                 .queryParam("query", tweetCount)
 
-                .when().get(this.baseUrl + TWEETS_COUNTS_RECENT_ALL).then();
+                .when().get(this.baseUrl2 + TWEETS_COUNTS_RECENT_ALL).then();
     }
 
 //      Long idTweet;
@@ -472,19 +469,19 @@ public class Tweet2 extends RestBase {
         System.out.println(given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .when().get(this.baseUrl + endPoint).timeIn(TimeUnit.MILLISECONDS));
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + endPoint).then();
+                .when().get(this.baseUrl2 + endPoint).then();
     }
 
     //Header Value
     public void headerValue(String endPoint) {
         System.out.println(given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + endPoint).then().extract().headers());
+                .when().get(this.baseUrl2 + endPoint).then().extract().headers());
     }
 
     // Check Property
     public void checkProperty(String endPoint, String prop) {
         Response response = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
-                .when().get(this.baseUrl + endPoint);
+                .when().get(this.baseUrl2 + endPoint);
         JsonPath pathEvaluator = response.jsonPath();
         String property = pathEvaluator.get(prop);
         System.out.println("Property value : " + property);
@@ -499,7 +496,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUserLikeTweetName() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_USERS_LIKED).then();
+                .when().get(this.baseUrl2 + GET_USERS_LIKED).then();
 
     }
     //
@@ -517,7 +514,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 //.param("id",id)
-                .when().get(this.baseUrl + this.GET_USER_LIKED_TWEETS(id)).then();
+                .when().get(this.baseUrl2 + this.GET_USER_LIKED_TWEETS(id)).then();
     }
 
 
@@ -539,7 +536,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 //  .param("username")
-                .when().get(this.baseUrl + this.GET_USERS_BY_USERNAME_TWEETS(userName)).then();
+                .when().get(this.baseUrl2 + this.GET_USERS_BY_USERNAME_TWEETS(userName)).then();
 
     }
 //Returns a variety of information about one or more users specified by the requested IDs.
@@ -557,7 +554,7 @@ public class Tweet2 extends RestBase {
                 .auth().oauth2(this.bearerToken)
                 .queryParam("ids", userTweetID)
                 .queryParam("user.fields", TweetField)
-                .when().get(this.baseUrl + this.GET_USERS_BY_IDS_TWEETS).then();
+                .when().get(this.baseUrl2 + this.GET_USERS_BY_IDS_TWEETS).then();
 
     }
 
@@ -571,7 +568,7 @@ public class Tweet2 extends RestBase {
                 .auth().oauth2(this.bearerToken)
                 .queryParam("usernames", usernames)
                 .queryParam("tweet.fields", TweetField)
-                .when().get(this.baseUrl + this.GET_USERS_BY_IDs).then();
+                .when().get(this.baseUrl2 + this.GET_USERS_BY_IDs).then();
 
     }
 
@@ -592,7 +589,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
 
-                .when().get(this.baseUrl + this.GET_SPACES_ID_ENDPOINT(userID)).then();
+                .when().get(this.baseUrl2 + this.GET_SPACES_ID_ENDPOINT(userID)).then();
     }
 
 
@@ -607,7 +604,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("query", searchQuery)
-                .when().get(this.baseUrl + this.GET_SPACES_SEARCH_ENDPOINT_1).then();
+                .when().get(this.baseUrl2 + this.GET_SPACES_SEARCH_ENDPOINT_1).then();
     }
 
     //==================================================================================================================
@@ -624,7 +621,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getListsId(String likeId) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_LIST_ID_ENDPOINT(likeId)).then();
+                .when().get(this.baseUrl2 + this.GET_LIST_ID_ENDPOINT(likeId)).then();
     }
     //==================================================================================================================
 
@@ -638,7 +635,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUsersOwnerLists(String ownerList) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_USERS_OWNED_LIST(ownerList)).then();
+                .when().get(this.baseUrl2 + this.GET_USERS_OWNED_LIST(ownerList)).then();
     }
 
     //==================================================================================================================
@@ -653,7 +650,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getListIdTweet(String tweetList) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_LISTS_ID_TWEET(tweetList)).then();
+                .when().get(this.baseUrl2 + this.GET_LISTS_ID_TWEET(tweetList)).then();
     }
 
 
@@ -673,7 +670,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getListIdMember() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + this.GET_LISTS_ID_MEMBER).then();
+                .when().get(this.baseUrl2 + this.GET_LISTS_ID_MEMBER).then();
     }
 
 
@@ -684,7 +681,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUserListMember() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_USER_MEMBER_LIST).then();
+                .when().get(this.baseUrl2 + GET_USER_MEMBER_LIST).then();
     }
 
     //     /2/lists/:id/members
@@ -697,7 +694,7 @@ public class Tweet2 extends RestBase {
                 .contentType("application/json")
                 //.auth().oauth2(this.bearerToken)
                 .body(userId)
-                .when().post(this.baseUrl + POST_USER_MEMBER_LIST_1).then();
+                .when().post(this.baseUrl2 + POST_USER_MEMBER_LIST_1).then();
     }
 
     //GET /2/users/:id/list_memberships
@@ -706,7 +703,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUsersIdListMemberships() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + USERS_ID_LIST_MEMBERSHIPS).then();
+                .when().get(this.baseUrl2 + USERS_ID_LIST_MEMBERSHIPS).then();
     }
 
 
@@ -717,7 +714,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getTweetSearchStreamRule() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + TWEETS_SEARCH_STREAM_RULES).then();
+                .when().get(this.baseUrl2 + TWEETS_SEARCH_STREAM_RULES).then();
     }
 
 
@@ -730,7 +727,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 //   .auth().oauth2(this.bearerToken)
                 // .queryParam("expansions",ownerId)
-                .when().get(this.baseUrl + GET_USERS_ID_PINNED_LISTS).then();
+                .when().get(this.baseUrl2 + GET_USERS_ID_PINNED_LISTS).then();
     }
 
 
@@ -746,7 +743,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getUsersIdMuting() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 //   .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_USERS_ID_MUTING).then();
+                .when().get(this.baseUrl2 + GET_USERS_ID_MUTING).then();
     }
 
 
@@ -763,7 +760,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .body(targetId)
                 //   .auth().oauth2(this.bearerToken)
-                .when().post(this.baseUrl + POST_USERS_ID_MUTING).then();
+                .when().post(this.baseUrl2 + POST_USERS_ID_MUTING).then();
     }
 
 
@@ -774,7 +771,7 @@ public class Tweet2 extends RestBase {
         return given().contentType("application/json").auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
 
                 .body(name)
-                .when().put(this.baseUrl + PUT_LISTS_ID).then();
+                .when().put(this.baseUrl2 + PUT_LISTS_ID).then();
     }
 
     //POST/2/lists
@@ -784,7 +781,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .contentType("application/json")
                 .body(name)
-                .when().post(this.baseUrl + POST_LISTS_ID).then();
+                .when().post(this.baseUrl2 + POST_LISTS_ID).then();
     }
 
 
@@ -799,7 +796,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("tweet.fields", tweetStream)
-                .when().get(this.baseUrl + GET_TWEETS_SAMPLE_STREAM).then();
+                .when().get(this.baseUrl2 + GET_TWEETS_SAMPLE_STREAM).then();
     }
 
 
@@ -810,7 +807,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("ids", id)
-                .when().get(this.baseUrl + GET_TWEETS_SAMPLE_STREAM_RULES).then();
+                .when().get(this.baseUrl2 + GET_TWEETS_SAMPLE_STREAM_RULES).then();
     }
 
     ///tweets/search/stream/rules
@@ -819,7 +816,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getTweetsSampleStreamRules2() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_TWEETS_SAMPLE_STREAM_RULES_2).then();
+                .when().get(this.baseUrl2 + GET_TWEETS_SAMPLE_STREAM_RULES_2).then();
 
 
     } ///tweets/search/stream/rules
@@ -829,7 +826,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getSearchStream() {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_SEARCH_STREAM).then();
+                .when().get(this.baseUrl2 + GET_SEARCH_STREAM).then();
 
 
     }
@@ -841,7 +838,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("partition", number)
-                .when().get(this.baseUrl + COVID19_STREAM_1).then();
+                .when().get(this.baseUrl2 + COVID19_STREAM_1).then();
 
     }
 
@@ -856,7 +853,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessToken)
                 //   .queryParam("expansions",pinned_tweet_id)
                 //.auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + GET_USERS_ME).then();
+                .when().get(this.baseUrl2 + GET_USERS_ME).then();
     }
 
     //2/tweets?ids=1204084171334832128
@@ -873,7 +870,7 @@ public class Tweet2 extends RestBase {
     public ValidatableResponse getTweetsId(String tweetId) {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
-                .when().get(this.baseUrl + getTweetIdEndPoint(tweetId)).then();
+                .when().get(this.baseUrl2 + getTweetIdEndPoint(tweetId)).then();
     }
 
     public final String GET_TWEET_ID_ENDPOINT = "/tweets/1503931500491952128";
@@ -882,7 +879,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .auth().oauth2(this.bearerToken)
                 .queryParam("expansions", expansions)
-                .when().get(this.baseUrl + GET_TWEET_ID_ENDPOINT).then();
+                .when().get(this.baseUrl2 + GET_TWEET_ID_ENDPOINT).then();
     }
 
 
@@ -895,7 +892,7 @@ public class Tweet2 extends RestBase {
         return given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret)
                 .contentType("application/json")
                 .body(followId)
-                .when().post(this.baseUrl + USERS_ID_FOLLOWED_LISTS).then();
+                .when().post(this.baseUrl2 + USERS_ID_FOLLOWED_LISTS).then();
 
     }
 
