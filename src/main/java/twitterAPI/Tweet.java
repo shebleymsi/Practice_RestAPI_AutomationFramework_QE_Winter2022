@@ -36,7 +36,8 @@ public class Tweet extends RestBase {
 
 
     // create variable
-    public RequestSpecification access = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret);
+    public  RequestSpecification access = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret);
+
 
 
 

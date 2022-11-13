@@ -6,6 +6,7 @@ import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,9 +16,6 @@ import java.util.UUID;
 
 import static io.restassured.RestAssured.*;
 import static twitterAPI.Tweet.*;
-
-
-
 
 
 public class TweetTest extends RestBase {
@@ -218,6 +216,7 @@ public class TweetTest extends RestBase {
         Headers response = this.tweet.headerValue(GET_USER_TWEET_ENDPOINT);
         String actualHeaderValue = response.getValue("content-type");
         System.out.println(response.getValue("content-type"));
+//      System.out.println(actualHeaderValue); // SHEBLEY : By me
         Assert.assertEquals(actualHeaderValue, "application/json;charset=utf-8", "Header value does not match");
 
     }
@@ -225,6 +224,8 @@ public class TweetTest extends RestBase {
     // 10 SHEBLEY : see and learn more
     @Test
     public void testPropertyFromResponse() {
+
+
         // User sent a tweet
         String tweet = "We are learning Rest API Automation and KUTUB_BABOR is the team Lead" + UUID.randomUUID().toString();
         ValidatableResponse response = this.tweet.createTweet(tweet);
@@ -234,15 +235,15 @@ public class TweetTest extends RestBase {
 
         // Verify that the tweet is successful
         response.statusCode(200);
+        System.out.println(response.statusCode(200)); // SHEBLEY : By me
 
-        // this.tweetAPIClient.checkProperty(tweetAPIClient.CREATE_TWEET_ENDPOINT,"text");
 
         Response response1 = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret).when().get(this.baseUrl + GET_USER_TWEET_ENDPOINT);
-        // Response response2=  response;
         JsonPath pathEvaluator = response1.jsonPath();
         String property = pathEvaluator.get("[0].text");
+
         System.out.println("Property value : " + property);
-        //  System.out.println(response1.extract().body().asPrettyString());
+        //  System.out.println(response1.extract().body().asPrettyString()); // SHEBLEY : wrong code but just check its like b4
         System.out.println(response1.body().asPrettyString());
 
     }
