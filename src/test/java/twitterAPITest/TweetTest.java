@@ -19,6 +19,15 @@ import static twitterAPI.Tweet.*;
 
 
 public class TweetTest extends RestBase {
+
+    /*
+    Note :
+    # check 1st the secret.properties
+    # For Twitter API version 1.1
+    # Project SHEBLEY (QE_WINTER2022_M$I_STANDALONA  v56 : 3.39.30 Authantication informations for Authorization (new) )
+    # Lecture 56 and 57, for TweetTest Class
+    */
+
     private Tweet tweet;
 
     @BeforeClass

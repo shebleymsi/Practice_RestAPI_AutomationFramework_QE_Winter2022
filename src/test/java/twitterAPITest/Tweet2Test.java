@@ -8,6 +8,14 @@ import twitterAPI.Tweet;
 import twitterAPI.Tweet2;
 
 public class Tweet2Test extends RestBase {
+
+    /*   Note :
+           # check 1st secret.properties
+           # For Twitter API version 2
+           # Project SHEBLEY (API_1ST_PRACTICE_MSI  v58 : 02.02.51 Authantication informations for Authorization (new) )
+           # Lecture 58, for TweetProjectTest Class
+    */
+
     private Tweet2 tweet2;
 
     @BeforeClass
