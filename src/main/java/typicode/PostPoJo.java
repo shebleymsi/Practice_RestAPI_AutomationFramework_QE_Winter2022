@@ -1,13 +1,20 @@
 package typicode;
 
 public class PostPoJo {
+
     // https://jsonplaceholder.typicode.com/
 
+    // Work as like an Encapsulation
+
+
+    // create variable v58 3.47.00
     private int userId;
     private int id;
     private String title;
     private String body;
 
+
+    // create constructor  v58 3.48.00
     public PostPoJo(int userId, int id, String title, String body) {
         this.userId = userId;
         this.id = id;
@@ -15,6 +22,8 @@ public class PostPoJo {
         this.body = body;
     }
 
+
+    // create getter setter  v58 3.48.00
     public int getUserId() {
         return userId;
     }
