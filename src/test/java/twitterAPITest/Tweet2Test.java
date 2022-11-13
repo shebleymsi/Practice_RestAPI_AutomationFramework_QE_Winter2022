@@ -18,19 +18,20 @@ public class Tweet2Test extends RestBase {
 
    @Test
     public void testGetUserTimeLineTweet() {
-        ValidatableResponse response =tweet2.getTweetTimeLine(1590650473698181121L);
-        response.log().all();
-        System.out.println(response.statusCode(404)); //200
-        System.out.println(response.extract().body().asPrettyString());
+       Tweet2 tweet2 = new Tweet2();
+       ValidatableResponse response = tweet2.getTweetTimeLine(1557786208402640898L);
+       response.log().all();
+       System.out.println(response.statusCode(200)); //200
+       System.out.println(response.extract().body().asPrettyString());
     }
 
     @Test
     public void testGetUserTimeLineTweetFollowing() {
-       // ValidatableResponse response =tweet2.getTweetTimelineWithFollowing(1557786208402640898L);
-        ValidatableResponse response =tweet2.getTweetTimeLineWithFollowing(1557786208402640898L);
+        ValidatableResponse response = this.tweet2.getTweetTimeLineWithFollowing(1557786208402640898L);
         response.log().all();
-     //   response.statusCode(200);
-      //  System.out.println(response.extract().body().asPrettyString());
+        response.statusCode(200);
+        System.out.println( response.statusCode(200));
+        System.out.println(response.extract().body().asPrettyString());
     }
 
 }
