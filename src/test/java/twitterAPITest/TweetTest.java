@@ -185,8 +185,8 @@ public class TweetTest extends RestBase {
     @Test
     public void verifyDeleteTweet() {
         ValidatableResponse response = this.tweet.deleteTweet(1590632803473186816L);
-        //  response.statusCode(200);
-        //  response.log().all();
+//      response.statusCode(200);
+//      response.log().all();
         System.out.println(response.extract().body().asPrettyString());
 
     }
@@ -195,7 +195,12 @@ public class TweetTest extends RestBase {
     @Test
     public void verifyResponseTime() {
         long actualResponse = this.tweet.responseTimeCheck(GET_USER_TWEET_ENDPOINT);
+
         //  Assert.assertEquals(actualResponse,actualResponse<700,"Response time does not match");
+        /*If we do verification like above this way, it will not work, because time is increasing or decreasing.
+        so i set up a time, my expectation is it is should not bre more than 900 mili-second,
+        now it will verify that actual response should be less than <900. */
+
         Assert.assertTrue(actualResponse < 900, "Response time exit the default time does not match");
 
     }
