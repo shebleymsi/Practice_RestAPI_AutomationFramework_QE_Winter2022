@@ -72,8 +72,10 @@ public class Tweet2 extends RestBase {
     private final String DELETE_TWEET_ENDPOINT = "/statuses/destroy.json";
 
 
-    // Create: POST     // https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
-    public final String CREATE_TWEET_ENDPOINT = "/tweets";  // v2
+    // Create: POST     /
+    // / https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/api-reference/post-statuses-update
+    // v2
+    public final String CREATE_TWEET_ENDPOINT = "/tweets";
     Long useId;
     public final String GET_USER_TWEET_ENDPOINT_FOLLOWING = "/users/" + useId + "/following";
 
