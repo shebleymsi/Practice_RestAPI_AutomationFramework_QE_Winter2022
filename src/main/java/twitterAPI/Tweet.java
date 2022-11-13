@@ -39,8 +39,6 @@ public class Tweet extends RestBase {
     public  RequestSpecification access = given().auth().oauth(this.apiKey, this.apiSecretKey, this.accessToken, this.accessTokenSecret);
 
 
-
-
     //  Action method
     // Get All Tweet information
 

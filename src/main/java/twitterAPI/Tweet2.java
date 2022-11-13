@@ -12,11 +12,12 @@ import static io.restassured.RestAssured.given;
 
 public class Tweet2 extends RestBase {
 
-
     // https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-tweets#tab0
     // https://api.twitter.com/2/users/:id/tweets
     // https://api.twitter.com/2/users/1182463426272092160/tweets
-    // https://tweeterid.com/     for converting twitter id
+    // https://tweeterid.com/    ... ... ... for converting twitter id
+
+
     public static final String SINGLE_USER_TWEET_ENDPOINT = "/users/:id/tweets";
 
 

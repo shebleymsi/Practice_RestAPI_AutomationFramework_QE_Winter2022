@@ -11,7 +11,7 @@ public class RestBase {
     protected String apiSecretKey;
     protected String accessToken;
     protected String accessTokenSecret;
-    protected String bearerToken;
+    protected String bearerToken;  // lecture 58 (00.38.30)  Twitter API version 2
     protected Properties properties;
 
     protected static InputStream inputStream;
@@ -36,7 +36,7 @@ public class RestBase {
         this.apiSecretKey = this.properties.getProperty("apiSecretKey");
         this.accessToken = this.properties.getProperty("accessToken");
         this.accessTokenSecret = this.properties.getProperty("accessTokenSecret");
-        this.bearerToken = this.properties.getProperty("bearerToken");
+        this.bearerToken = this.properties.getProperty("bearerToken"); // lecture 58 (00.38.34) Twitter API version 2
     }
 
 

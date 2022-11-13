@@ -130,7 +130,6 @@ public class TweetTest extends RestBase {
     }
 
 
-
     // 04
     @Test
     public void verifyCreateTweet() {
